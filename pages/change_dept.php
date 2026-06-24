@@ -31,9 +31,11 @@
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="../design/theme-dark/style.css">
         <title>Changer de département</title>
     </head>
     <body>
+        <div class="container">
     <p><a href="fiche.php?emp_no=<?= urlencode($emp_no) ?>">&larr; Retour à la fiche</a></p>
 
     <?php if (!$employee) { ?>
@@ -53,20 +55,29 @@
             <strong>Département actuel :</strong>
             <?= $current ? $current['dept_name'] . ' (depuis le ' . $current['from_date'] . ')' : 'aucun' ?>
         </p>
-
+        
+        <div class="card">
         <form method="post" action="change_dept.php?emp_no=<?= urlencode($emp_no) ?>">
-            <p>
-                Nouveau département :
-                <select name="dept_no">
+            <div class="form-group">
+                <label for="">Nouveau département : </label>
+                <select class="form-control" name="dept_no">
                     <option value="">— Choisir —</option>
                     <?php foreach ($departments as $d) { ?>
                         <option value="<?= $d['dept_no'] ?>"><?= $d['dept_name'] ?></option>
                     <?php } ?>
                 </select>
-            </p>
-            <p>Date de début : <input type="date" name="from_date"></p>
-            <p><input type="submit" value="Changer de département"></p>
+            </div>
+            
+            <div class="form-group">
+                <label for="">Date de début : </label>
+                <input class="form-control" type="date" name="from_date">
+            </div>
+
+            <input class="btn" type="submit" value="Changer de département">
         </form>
+        </div>
+
     <?php } ?>
+    </div>
     </body>
 </html>

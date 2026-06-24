@@ -28,9 +28,11 @@
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="../design/theme-dark/style.css">
         <title>Devenir manager</title>
     </head>
     <body>
+        <div class="container">
     <p><a href="fiche.php?emp_no=<?= urlencode($emp_no) ?>">&larr; Retour à la fiche</a></p>
 
     <?php if (!$employee) { ?>
@@ -52,11 +54,19 @@
         <p><strong>Manager en cours :</strong>
             <?= $manager ? $manager['manager_name'] . ' (depuis le ' . $manager['from_date'] . ')' : 'aucun' ?>
         </p>
-
+        
+        <div class="card">
         <form method="post" action="become_manager.php?emp_no=<?= urlencode($emp_no) ?>">
-            <p>Date de début : <input type="date" name="from_date"></p>
-            <p><input type="submit" value="Devenir manager"></p>
+            <div class="form-group">
+            <label for="">Date de début : </label>
+            <input class="form-control" type="date" name="from_date">
+            </div>
+
+            <input class="btn" type="submit" value="Devenir manager">
         </form>
+        </div>
+
     <?php } ?>
+    </div>
     </body>
 </html>
