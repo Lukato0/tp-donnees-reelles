@@ -7,9 +7,13 @@
 
     $error   = '';
     $success = false;
+
+    //Erreur de boolean
+    $dept_name = $editing ? get_one_department($dept_no_url)['dept_name'] : '';
+    // $dept_name = $editing ? $editing['dept_name'] : '';
+
     // Valeurs affichées dans le formulaire
     $dept_no   = $dept_no_url;
-    $dept_name = $editing ? $editing['dept_name'] : '';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mode      = $_POST['mode'] ?? 'add';
