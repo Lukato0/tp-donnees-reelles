@@ -1,6 +1,10 @@
 <?php
     include('../inc/functions.php');
-    $departments = get_all_departments();
+    
+    $trier = $_GET['trier'] ?? '' ;
+    $trier = trim($trier);
+    echo $trier ;
+    $departments = get_all_departments($trier);
 
 ?>		
 <html>
@@ -17,6 +21,13 @@
         <a href="stats.php">📊 Statistiques par emploi</a>
         <a href="dept_form.php">➕ Ajouter un département</a>
         <a href="emp_form.php">➕ Ajouter un employé</a>
+        <?php
+            if (isset($_GET['trier']) && $trier === "ASC") { ?>
+                <a href="?trier=DESC">🗂️ Trier Nom Decroissant </a>
+                <?php } else { ?>
+                <a href="?trier=ASC">🗂️ Trier Nom Croissant </a>
+            <?php }
+        ?>
     </nav>
     
     <h1>Liste des départements</h1>

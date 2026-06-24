@@ -26,7 +26,7 @@ function get_one_line($sql){
     return $result;
 }
 
-function get_all_departments()
+function get_all_departments($trier)
 {
     $sql = "SELECT d.dept_no,
                    d.dept_name,
@@ -40,8 +40,16 @@ function get_all_departments()
                    ON dm.dept_no = d.dept_no
                   AND dm.to_date = '9999-01-01'
             LEFT JOIN employees e
-                   ON e.emp_no = dm.emp_no
-            ORDER BY d.dept_no";
+                   ON e.emp_no = dm.emp_no ";
+
+    if ($trier === "ASC") {
+        $sql = $sql . "ORDER BY d.dept_name ASC" ;
+    } elseif ($trier === "DESC") {
+        $sql = $sql . "ORDER BY d.dept_name DESC" ;
+    } else {
+        $sql = $sql . "ORDER BY d.dept_no " ;
+    }
+    
     return get_all_lines($sql);
 }
 
